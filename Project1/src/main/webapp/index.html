@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Project 1 Reimbursements</title>
+<link rel="stylesheet" type="text/css"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!-- Bring Bootstrap 4 libraries -->
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="./resources/javascript/formvalidation.js"></script>
+<script src="./resources/javascript/ajax.js"></script>
+<!-- The above makes use of a CDN (Content Delivery Network) It will take the files directly
+    from the link posted above and use it in the project. -->
+    
+<!-- 
+<link rel="stylesheet" type="text/css" href="./resources/css/main.css" />
+-->
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1 style="background-color: pink;color: black; padding: 10px; margin-right: 575px">Welcome! Please log in or create an account.</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class=rsection>
+                    <h3>CREATE ACCOUNT</h3>
+                    <hr>
+                    <div id="errorDiv"></div>
+                    <form method=POST action="main/createUser" id=register
+                        onsubmit="return validateRegistration()">
+                        <div class="input-group mb-3" id="usernameDiv">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">USERNAME</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter a new username here"
+                                name="username" id=username 
+                                onchange="validateUsername()" required>
+                        </div>
+                        <div class="input-group mb-3" id="passwordDiv">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">PASSWORD</span>
+                            </div>
+                            <input type="password" class="form-control"
+                                placeholder="Enter a new password here" name="password1" id=password1 required>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">CONFIRM</span>
+                            </div>
+                            <input type="password" class="form-control"
+                                placeholder="Reenter password here" name="password2" id=password2
+                                required>
+                        </div>
+                        <div class="input-group mb-3" id="nameDiv">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">NAME</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter your first and last name here"
+                                name="name" id=name required>
+                        </div>
+                        <div class="input-group mb-3" id="emailDiv">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">EMAIL</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter your email address here"
+                                name="email" id=email required>
+                        </div>
+                        <br>
+                        <button style="background-color: gray" class="btn btn-success">CREATE ACCOUNT</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class=rsection>
+                    <h3>LOG IN TO CURRENT ACCOUNT</h3>
+                    <hr>
+                    <form method="POST" action="main/login">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">USERNAME</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter your current username here"
+                                name="username" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">PASSWORD</span>
+                            </div>
+                            <input type="password" class="form-control"
+                                placeholder="Enter your current password here" name="password" required>
+                        </div>
+                        <button style="background-color: gray" class="btn btn-success">LOGIN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

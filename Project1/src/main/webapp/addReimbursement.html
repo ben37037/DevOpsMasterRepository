@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="Project1.css">
+<head>
+<meta charset="ISO-8859-1">
+<title>Request New Reimbursement Page</title>
+</head>
+<body>
+		<nav class="navbar">
+		<div class="container-fluid">
+
+			<div>
+				<ul class="nav navbar-nav">
+				<li><button style="background-color:red; color:black" onclick="goBack()">Go Back</button>
+				<script>
+				function goBack() 
+				{
+				  window.history.back();
+				}
+				</script>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	  <div class="centered">        
+        <h3>Enter Reimbursement Information Below</h3><hr><br/><br/>
+		<form method="POST" action="/addReimbursement" enctype="multipart/form-data">
+	         <div class="input-group mb-3">
+	             <div class="input-group-prepend">
+	                 <span class="input-group-text">REIMBURSEMENT AMOUNT</span>
+	             </div>
+	             <input type="text" class="form-control" placeholder="Enter the amount of money to be reimbursed"
+	                 name="reimbursementAmount" required size="40">
+	         </div><br/><br/>
+	         <div class="input-group mb-3">
+	             <div class="input-group-prepend">
+	                 <span class="input-group-text">REIMBURSEMENT DESCRIPTION</span>
+	             </div>
+	             <input type="text" class="form-control"
+	                 placeholder="Enter the reason for reimbursement here" name="reimbursementDescription" required size="40">
+	         </div><br/>
+	          <div class="input-group mb-3">
+	             <div class="input-group-prepend">
+	                 <span class="input-group-text">REIMBURSEMENT TYPE</span>
+	             </div>
+		             <select name="reimbursementType">
+						  <option value="lodging">Lodging</option>
+						  <option value="travel">Travel</option>
+						  <option value="food">Food</option>
+						  <option value="other">Other</option>
+					</select>
+	         </div><br/>
+	         <div class="input-group mb-3">
+	             <div class="input-group-prepend">
+	                 <span class="input-group-text">UPLOAD RECEIPT</span>
+	             </div>
+	             <input type="file" class="form-control"
+	                 placeholder="Choose a receipt picture to upload" name="reimbursementReceipt" accept="/image/*" id="reimbursementReceiptId" required>
+	         </div><br/>
+	         <button style="background-color: gray" class="btn btn-success" id="button">Create Request!</button>
+	         <p id="reimbursementReceiptOutput"></p>
+	     </form>
+      </div>
+      
+</body>
+</html>

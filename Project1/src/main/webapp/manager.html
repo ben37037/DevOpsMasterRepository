@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<!-- <script src="./resource/javaScript/formvalidation.js"></script>
+<script src="./resource/javaScript/ajax.js"></script> -->
+
+<style>
+.navbar 
+{
+	background-color: pink;
+}
+td, th 
+{
+  border: 1px solid blue;
+  text-align: center;
+}
+
+</style>
+<body onload="showMyReimbursements()">
+	<nav class="navbar">
+		<div class="container-fluid">
+
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand" style="color: white;">MANAGER</a>
+			</div>
+
+			<div>
+				<ul class="nav navbar-nav">
+				<li><a href="http://localhost:8080/Project1/manager.html">Go To Your Home Page</a></li>
+					<li><a href="http://localhost:8080/Project1/allRequests.html">View Employee Reimbursement Requests</a></li>
+					<li><a href="http://localhost:8080/Project1/addReimbursement.html">Request Reimbursement</a></li>
+					<li><a href="http://localhost:8080/Project1/">Log Out</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="reim-container">
+		<h1 id="welcome">Welcome, Manager </h1>
+		<div id="paragraph"><br/><hr>
+			<table class="form-control form-control-sm" id="reimblist">
+				<tr>
+					<th>Reimbursement ID</th>
+					<th>Reimbursement Amount</th>
+					<th>Reimbursement Submission Date</th>
+					<th>Reimbursement Resolution Date</th>
+					<th>Reimbursement Description</th>
+					<th>Reimbursement Receipt</th>
+					<th>Reimbursement Author Id</th>
+					<th>Reimbursement Resolver Id</th>
+					<th>Reimbursement Status Id</th>
+					<th>Reimbursement Type Id</th>
+				</tr>
+        	</table>
+		</div>
+	</div>
+	<script>
+	let paragraph = document.getElementById("reimblist");
+	
+	if(paragraph)
+	{
+		paragraph.addEventListener("click", showMyReimbursements);
+		//alert(table);
+	}
+
+	function showMyReimbursements()
+	{
+
+	    let xhr = new XMLHttpRequest();
+	    let cookie = document.cookie;
+	   // alert('Hello, ' + cookie);
+
+	    xhr.onreadystatechange = function () 
+		{
+	        if (this.readyState == 4 && this.status == 200)
+			{
+	            let dataIn = JSON.parse(xhr.responseText);
+	            console.log(dataIn);
+	            //console.log(data.name);
+				//alert(dataIn);
+	            renderHTML(dataIn);
+	        }
+	    }
+
+	    xhr.open('GET', 'http://localhost:8080/Project1/main/seeMyReimbursements');
+	        xhr.send(); 
+	}
+
+	function renderHTML(dataIn) 
+	{
+		var counter = 1;
+		dataIn.forEach(function(element)
+		{
+			var currentRow = paragraph.insertRow(counter);
+			  var cell1 = currentRow.insertCell(0);
+			  var cell2 = currentRow.insertCell(1);
+			  var cell3 = currentRow.insertCell(2);
+			  var cell4 = currentRow.insertCell(3);
+			  var cell5 = currentRow.insertCell(4);
+			  var cell6 = currentRow.insertCell(5);
+			  var cell7 = currentRow.insertCell(6);
+			  var cell8 = currentRow.insertCell(7);
+			  var cell9 = currentRow.insertCell(8);
+			  var cell10 = currentRow.insertCell(9);
+			  cell1.innerHTML = element.reimbursementId;
+			  cell2.innerHTML = element.reimbursementAmount;
+			  cell3.innerHTML = element.reimbursementSubmissionDate;
+			  cell4.innerHTML = element.reimbursementResolutionDate;
+			  cell5.innerHTML = element.reimbursementDescription;
+			  cell6.innerHTML = element.reimbursementReceipt;
+			  cell7.innerHTML = element.reimbursementAuthorId;
+			  cell8.innerHTML = element.reimbursementResolverId;
+			  cell9.innerHTML = element.reimbursementStatusId;
+			  cell10.innerHTML = element.reimbursementTypeId;
+			  counter++;
+		});
+	}
+	</script>
+</body>
+</html>
